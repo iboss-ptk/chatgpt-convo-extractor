@@ -4,16 +4,19 @@ This is a simple tool to extract conversations from the ChatGPT chat log as mark
 
 ## Installation
 
+```sh
+git clone https://github.com/iboss-ptk/chatgpt-convo-extractor.git
+cd chatgpt-convo-extractor
+npm install && npm run dev
+```
 ### Chrome
 
-1. clone this repo
-2. `npm install && npm run dev` (more info [here](https://docs.plasmo.com/framework/workflows/dev))
-3. open `chrome://extensions` and click `Load unpacked` on the top left
-4. select the `build/chrome-mv3-dev` folder in this repo (unless you specified a different `--target` in step 2)
+1. open `chrome://extensions` and click `Load unpacked` on the top left
+2. select the `build/chrome-mv3-dev` folder in this repo (unless you specified a different `--target` in step 2)
 
 ### Other Browsers
 
-In step 2, specify a different `--target` (e.g. `--target=firefox-mv2`). See list of available targets [here](https://docs.plasmo.com/framework/workflows/faq#what-are-the-officially-supported-browser-targets).
+In `npm run dev`, specify a different `--target` (e.g. `--target=firefox-mv2`). See list of available targets [here](https://docs.plasmo.com/framework/workflows/faq#what-are-the-officially-supported-browser-targets).
 
 ## Usage
 

@@ -1,33 +1,45 @@
-This is a [Plasmo extension](https://docs.plasmo.com/) project bootstrapped with [`plasmo init`](https://www.npmjs.com/package/plasmo).
+# ChatGPT Conversation Extractor
 
-## Getting Started
+This is a simple tool to extract conversations from the ChatGPT chat log as markdown.
 
-First, run the development server:
+## Installation
 
-```bash
-pnpm dev
-# or
-npm run dev
+### Chrome
+
+1. clone this repo
+2. `npm install && npm run dev` (more info [here](https://docs.plasmo.com/framework/workflows/dev))
+3. open `chrome://extensions` and click `Load unpacked` on the top left
+4. select the `build/chrome-mv3-dev` folder in this repo (unless you specified a different `--target` in step 2)
+
+### Other Browsers
+
+In step 2, specify a different `--target` (e.g. `--target=firefox-mv2`). See list of available targets [here](https://docs.plasmo.com/framework/workflows/faq#what-are-the-officially-supported-browser-targets).
+
+## Usage
+
+On ChatGPT, open the conversation you want to extract. Then you have 2 options:
+
+- copy to clipboard: `ctrl + '` 
+- save to file: `ctrl + shift + '`
+
+You can change the hotkeys in [`content.ts`](./content.ts) if you want.
+
+```ts
+// content.ts
+
+// **************************************************
+// Key combination configuration, feel free to change
+// **************************************************
+const KEY_COMBINATION = (event: KeyboardEvent) => ({
+  // Copy: ctrl + '
+  copy: event.ctrlKey && event.key === "'",
+
+  // Download: ctrl + shift + '
+  download: event.ctrlKey && event.shiftKey && event.key === "'"
+})
+
 ```
 
-Open your browser and load the appropriate development build. For example, if you are developing for the chrome browser, using manifest v3, use: `build/chrome-mv3-dev`.
+## Thanks
 
-You can start editing the popup by modifying `popup.tsx`. It should auto-update as you make changes. To add an options page, simply add a `options.tsx` file to the root of the project, with a react component default exported. Likewise to add a content page, add a `content.ts` file to the root of the project, importing some module and do some logic, then reload the extension on your browser.
-
-For further guidance, [visit our Documentation](https://docs.plasmo.com/)
-
-## Making production build
-
-Run the following:
-
-```bash
-pnpm build
-# or
-npm run build
-```
-
-This should create a production bundle for your extension, ready to be zipped and published to the stores.
-
-## Submit to the webstores
-
-The easiest way to deploy your Plasmo extension is to use the built-in [bpp](https://bpp.browser.market) GitHub action. Prior to using this action however, make sure to build your extension and upload the first version to the store to establish the basic credentials. Then, simply follow [this setup instruction](https://docs.plasmo.com/framework/workflows/submit) and you should be on your way for automated submission!
+Markdown extraction logic is copied from this [reddit post](https://www.reddit.com/r/ChatGPT/comments/zm237o/save_your_chatgpt_conversation_as_a_markdown_file/) by @Creative_Original918
